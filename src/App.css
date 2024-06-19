@@ -44,6 +44,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;
+    text-transform: uppercase;
   }
   span{
     width: 100%;
