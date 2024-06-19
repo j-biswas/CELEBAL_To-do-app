@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import './App.css'
@@ -10,6 +10,7 @@ function App() {
     title: "",
     description: "",
   });
+  const init = useRef(false);
   const [AddToDo, setAddToDo] = useState(false);
   const handleChange = (e) => {
     setInput({
@@ -64,8 +65,11 @@ function App() {
   },[])
 
   useEffect(() => { 
-    if(todos.length != 0)
-    localStorage.setItem('todos', JSON.stringify(todos));
+    if(init.current){
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }else{
+      init.current = true;
+    }
   }, [todos])
 
 
